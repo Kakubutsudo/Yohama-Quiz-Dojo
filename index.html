@@ -1,8 +1,92 @@
-陽浜クイズ道場
-知識を遊ぼう。研究を続けよう。
-出題設定
-ジャンル出題形式四択20問文字並べ替え20問混合20問（各10問）
 
-挑戦する
-制限時間なし・1問5点・全20問100点満点
-陽浜研究所 · Ver.0.1
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFF0F4">
+  <title>陽浜クイズ道場</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <h1>陽浜クイズ道場</h1>
+      <p>知識を遊ぼう。研究を続けよう。</p>
+    </header>
+
+    <section id="setup" class="panel">
+      <h2>出題設定</h2>
+
+      <label for="category">ジャンル</label>
+      <select id="category"></select>
+
+      <label for="mode">出題形式</label>
+      <select id="mode">
+        <option value="multiple">四択20問</option>
+        <option value="shuffle">文字並べ替え20問</option>
+        <option value="mixed">混合20問（各10問）</option>
+      </select>
+
+      <p id="availability" class="notice" aria-live="polite"></p>
+      <button id="start">挑戦する</button>
+      <p class="muted">
+        制限時間なし・1問5点・全20問100点満点
+      </p>
+    </section>
+
+    <section id="play" class="panel" hidden>
+      <div class="meta">
+        <span id="progress"></span>
+        <span id="score"></span>
+      </div>
+
+      <div class="progress-track">
+        <div id="progress-bar"></div>
+      </div>
+
+      <p id="genre-tag" class="genre"></p>
+      <h2 id="question"></h2>
+
+      <div id="multiple-options" class="options"></div>
+
+      <div id="shuffle-area" hidden>
+        <div id="answer-tiles" class="tiles answer-tiles"
+             aria-label="回答欄"></div>
+        <div id="letter-tiles" class="tiles"
+             aria-label="文字の選択肢"></div>
+
+        <div class="controls">
+          <button id="undo" class="secondary">一文字戻す</button>
+          <button id="clear" class="secondary">全部消す</button>
+        </div>
+      </div>
+
+      <button id="submit" disabled>解答する</button>
+
+      <div id="feedback" class="feedback" hidden aria-live="polite">
+        <svg id="mark" viewBox="0 0 180 160"
+             width="180" height="160" aria-hidden="true"></svg>
+        <h3 id="verdict"></h3>
+        <p id="correct-answer"></p>
+        <p id="explanation"></p>
+      </div>
+
+      <button id="next" hidden>次の問題へ</button>
+      <button id="quit" class="text-button">タイトルへ戻る</button>
+    </section>
+
+    <section id="result" class="panel" hidden>
+      <h2>結果発表！</h2>
+      <p id="final-score" class="final-score"></p>
+      <p id="result-detail"></p>
+      <button id="again">もう一度挑戦</button>
+    </section>
+
+    <footer>陽浜研究所 · Ver.0.1</footer>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
